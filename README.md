@@ -71,7 +71,7 @@ export interface DefaultItoConfig {
    * 是否有使用Tailwind
    * @default false
    */
-  tailwind?: boolean;[內碼] 
+  tailwind?: boolean;
 }
 ```
 
