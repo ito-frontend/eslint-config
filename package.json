@@ -22,6 +22,9 @@
   },
   "main": "dist/index.cjs",
   "module": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint . --fix",
