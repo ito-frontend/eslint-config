@@ -1,11 +1,11 @@
-import antfu from '@antfu/eslint-config';
-import { isPackageExists } from 'local-pkg';
+import antfu from '@antfu/eslint-config'
+import { isPackageExists } from 'local-pkg'
 
-import { javascriptConfig } from './configs/javascript.js';
-import { simpleImportSortConfig } from './configs/simple-import-sort.js';
-import { stylelisticConfig } from './configs/stylistic.js';
-import { getTailwindConfig } from './configs/tailwindcss.js';
-import { vueConfig } from './configs/vue.js';
+import { javascriptConfig } from './configs/javascript.js'
+import { simpleImportSortConfig } from './configs/simple-import-sort.js'
+import { stylelisticConfig } from './configs/stylistic.js'
+import { getTailwindConfig } from './configs/tailwindcss.js'
+import { vueConfig } from './configs/vue.js'
 
 /**
  * Factory function to create an ITO configuration object.
@@ -13,12 +13,12 @@ import { vueConfig } from './configs/vue.js';
  * @param {object} options - The options for the configuration.
  * @param {number} options.vueVersion - The version of Vue.js to use.
  * @param {boolean} options.tailwind - Whether to include Tailwind CSS.
- * @param {Array} otherConfigs - Additional configuration objects.
+ * @param {Array} options.otherConfigs - Additional configuration objects.
  * @returns {object} - The ITO configuration object.
  */
-function itoConfigFactory(options = {}, otherConfigs = []) {
-  const { vueVersion = 3, tailwind = false } = options;
-  const tailwindConfig = getTailwindConfig(tailwind);
+function itoConfigFactory(options) {
+  const { vueVersion = 3, tailwind = false, otherConfigs = [] } = options || {}
+  const tailwindConfig = getTailwindConfig(tailwind)
 
   return antfu(
     {
@@ -38,8 +38,8 @@ function itoConfigFactory(options = {}, otherConfigs = []) {
 
     ...tailwindConfig,
 
-    ...otherConfigs,
-  );
+    ...otherConfigs
+  )
 }
 
-export default itoConfigFactory;
+export default itoConfigFactory
