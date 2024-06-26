@@ -24,8 +24,7 @@
   "module": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
-    "lint": "eslint . --fix",
-    "release": "bumpp && npm publish"
+    "lint": "eslint . --fix"
   },
   "peerDependencies": {
     "eslint": ">=8.57.0"
