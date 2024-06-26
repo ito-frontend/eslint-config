@@ -5,14 +5,6 @@ on:
     types: [created]
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 8
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -20,8 +12,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 16
-      - run: pnpm ci
-      - run: pnpm test
+      - run: npm ci
+      - run: npm test
 
   publish-gpr:
     needs: build
