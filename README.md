@@ -9,7 +9,7 @@
 * 自動判斷是使用react還是vue。
 
 ## Install
-1. 在github上新增`Personal access tokens`，如果有設置過可跳過。路徑為
+1. 在Github上新增`Personal access tokens`，如果有設置過可跳過。路徑為
 `Settings > Developer settings > Personal access tokens > Tokens (classic) > Generate new token (classic)`
 ![](image.png)
 
