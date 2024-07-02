@@ -9,15 +9,15 @@ export const vueConfig = {
     'vue/max-attributes-per-line': [
       'error',
       {
-        singleline: { max: 1 },
+        singleline: { max: 3 },
         multiline: { max: 1 },
       },
     ],
     'vue/max-len': [
       'error',
       {
-        code: 120,
-        ignorePattern: '',
+        code: 100,
+        template: 120,
         ignoreComments: true,
         ignoreTrailingComments: true,
         ignoreUrls: true,
