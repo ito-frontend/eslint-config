@@ -18,6 +18,7 @@ export const vueConfig = {
       {
         code: 100,
         template: 120,
+        ignorePattern: '',
         ignoreComments: true,
         ignoreTrailingComments: true,
         ignoreUrls: true,
