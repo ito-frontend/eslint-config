@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "lib": ["es2017", "DOM"],
+    "rootDir": "./",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "allowJs": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "outDir": "out-tsc",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false
+  },
+  "include": ["./src/**/*.ts"]
+}
