@@ -1,18 +1,17 @@
-import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
-import pkg from './package.json' assert { type: 'json' };
 
 export default {
   input: './src/index.js',
   output: [
     {
-      file: pkg.main,
+      file: 'dist/index.cjs',
       format: 'cjs',
     },
     {
-      file: pkg.module,
+      file: 'dist/index.js',
       format: 'esm',
     },
   ],
@@ -20,12 +19,11 @@ export default {
     commonjs(),
     nodeResolve(),
     json(),
-    terser()
+    terser(),
   ],
   external: [
     '@antfu/eslint-config',
     'eslint-plugin-simple-import-sort',
     'eslint-plugin-tailwindcss',
-    'eslint-plugin-vue',
   ],
 };

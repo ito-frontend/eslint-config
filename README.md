@@ -73,41 +73,52 @@ npm config set @ito-frontend:registry https://npm.pkg.github.com/ && npm config 
 
 ```ts
 // ito工廠函數的參數
-interface ItoConfigParams {
+type ItoConfigParams = {
   /**
    * Vue的版本號
    * @default 3
    */
-  vueVersion?: 2 | 3
+  framework?: 'vue' | 'react';
+  /**
+   * Vue的版本號
+   * @default 3
+   */
+  vueVersion?: 2 | 3;
   /**
    * 是否有使用Tailwind
    * @default false
    */
-  tailwind?: boolean
+  tailwind?: boolean;
   /**
    * 其他自定義ESLint Flat Configs
    * @default []
    */
-  otherConfigs?: TypedFlatConfigItem[]
-}
+  otherConfigs?: TypedFlatConfigItem[];
+};
 ```
 
 ```ts
 // eslint.config.mjs
-import ito from '@onead-ito/eslint-config';
+import ito from '@ito-frontend/eslint-config';
 
-export default ito();
+export default ito({
+  framework: 'react',
+  tailwind: true,
+});
 ```
 
 5. 想確認所有規則
 
 ```jsonc
 // package.json
+{
   "scripts": {
     // ...
-    "lint:rules": "npx @eslint/config-inspector",
-  },
+    "lint:rules": "npx @eslint/config-inspector"
+  }
+}
 ```
+
 ![alt text](config-Inspector.png)
 
 <details>
