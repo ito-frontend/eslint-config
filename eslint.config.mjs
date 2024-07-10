@@ -1,3 +1,3 @@
 import itoConfigFactory from './src/index.js';
 
-export default itoConfigFactory();
+export default itoConfigFactory({ tailwind: true });

@@ -11,6 +11,7 @@ export function getTailwindConfig(enabled = false) {
     ? [
         ...pluginTailwindcss.configs['flat/recommended'],
         {
+          name: 'tailwindcss:rules',
           rules: {
             'tailwindcss/no-custom-classname': 'off',
           },

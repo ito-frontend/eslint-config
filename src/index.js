@@ -1,11 +1,11 @@
-import antfu from '@antfu/eslint-config'
-import { isPackageExists } from 'local-pkg'
+import antfu from '@antfu/eslint-config';
+import { isPackageExists } from 'local-pkg';
 
-import { javascriptConfig } from './configs/javascript.js'
-import { simpleImportSortConfig } from './configs/simple-import-sort.js'
-import { stylelisticConfig } from './configs/stylistic.js'
-import { getTailwindConfig } from './configs/tailwindcss.js'
-import { vueConfig } from './configs/vue.js'
+import { javascriptConfig } from './configs/javascript.js';
+import { simpleImportSortConfig } from './configs/simple-import-sort.js';
+import { stylelisticConfig } from './configs/stylistic.js';
+import { getTailwindConfig } from './configs/tailwindcss.js';
+import { vueConfig } from './configs/vue.js';
 
 /**
  * Factory function to create an ITO configuration object.
@@ -17,17 +17,21 @@ import { vueConfig } from './configs/vue.js'
  * @returns {object} - The ITO configuration object.
  */
 function itoConfigFactory(options) {
-  const { vueVersion = 3, tailwind = false, otherConfigs = [] } = options || {}
-  const tailwindConfig = getTailwindConfig(tailwind)
+  const { vueVersion = 3, tailwind = false, otherConfigs = [] } = options || {};
+
+  const tailwindConfig = getTailwindConfig(tailwind);
+
+  const isVueBase = ['vue', 'nuxt', 'vitepress', '@slidev/cli'].some((p) => isPackageExists(p));
+  const isReactBase = isPackageExists('react');
 
   return antfu(
     {
-      vue: ['vue', 'nuxt', 'vitepress', '@slidev/cli'].some((p) => isPackageExists(p)) && {
+      vue: isVueBase && {
         version: vueVersion,
         ...vueConfig,
       },
 
-      react: isPackageExists('react'),
+      react: isReactBase,
 
       stylistic: stylelisticConfig,
 
@@ -38,8 +42,8 @@ function itoConfigFactory(options) {
 
     ...tailwindConfig,
 
-    ...otherConfigs
-  )
+    ...otherConfigs,
+  );
 }
 
-export default itoConfigFactory
+export default itoConfigFactory;
