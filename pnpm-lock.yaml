@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@antfu/eslint-config':
-        specifier: ^2.21.3
+        specifier: ^2.21.2
         version: 2.22.0(@vue/compiler-sfc@3.4.31)(eslint@9.6.0)(typescript@5.5.3)
       eslint-plugin-simple-import-sort:
         specifier: ^12.1.1
