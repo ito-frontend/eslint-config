@@ -6,7 +6,6 @@
 - 整合[eslint-plugin-simple-import-sort](https://github.com/lydell/eslint-plugin-simple-import-sort)，對 import 進行排序。
 - 由[eslint-stylistic](https://github.com/eslint-stylistic/eslint-stylistic)進行排版，並不會強制換行，可自行在開發時手動用 prettier 排版。
 - 採用[ESLint Flat Config](https://eslint.org/docs/latest/use/configure/configuration-files)模式(ESLint >= v8.57.0)，擴充與設定更方便。
-- 自動判斷是使用 react 還是 vue。
 
 ## Github 私服連結方式，設定過後可以跳過
 
@@ -73,40 +72,55 @@ npm config set @ito-frontend:registry https://npm.pkg.github.com/ && npm config 
 
 ```ts
 // ito工廠函數的參數
-interface ItoConfigParams {
+type ItoConfigOptions = {
   /**
-   * Vue的版本號
-   * @default 3
+   * 使用的框架，'vue' 或 'react'，預設為 'vue'
+   * type: 'vue' | 'react'
+   * default: 'vue'
    */
-  vueVersion?: 2 | 3
+  framework?: 'vue' | 'react';
   /**
-   * 是否有使用Tailwind
-   * @default false
+   * Vue 版本，2 或 3，預設為 3
+   * type: 2 | 3
+   * default: 3
    */
-  tailwind?: boolean
+  vueVersion?: 2 | 3;
   /**
-   * 其他自定義ESLint Flat Configs
-   * @default []
+   * 是否使用 Tailwind CSS，預設為 false
+   * type: boolean
+   * default: false
    */
-  otherConfigs?: TypedFlatConfigItem[]
-}
+  tailwind?: boolean;
+  /**
+   * 其他自訂義的配置
+   * type: TypedFlatConfigItem[]
+   * default: []
+   */
+  otherConfigs?: TypedFlatConfigItem[];
+};
 ```
 
 ```ts
 // eslint.config.mjs
 import ito from '@onead-ito/eslint-config';
 
-export default ito();
+export default ito({
+  framework: 'react',
+  tailwind: true,
+});
 ```
 
 5. 想確認所有規則
 
 ```jsonc
 // package.json
+{
+  // ...
   "scripts": {
     // ...
-    "lint:rules": "npx @eslint/config-inspector",
-  },
+    "lint:rules": "npx @eslint/config-inspector"
+  }
+}
 ```
 ![alt text](config-Inspector.png)
 
