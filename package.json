@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/ito-frontend/eslint-config.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "keywords": [
     "eslint",
     "eslint-config",
