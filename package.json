@@ -39,7 +39,7 @@
     "eslint": ">=8.57.0"
   },
   "dependencies": {
-    "@antfu/eslint-config": "2.24.0",
+    "@antfu/eslint-config": "2.24.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-tailwindcss": "^3.17.4"
   },
@@ -48,10 +48,10 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
-    "bumpp": "^9.4.1",
+    "bumpp": "^9.4.2",
     "eslint": "^9.8.0",
-    "lint-staged": "^15.2.7",
-    "rollup": "^4.19.1",
+    "lint-staged": "^15.2.8",
+    "rollup": "^4.20.0",
     "simple-git-hooks": "^2.11.1"
   },
   "simple-git-hooks": {
