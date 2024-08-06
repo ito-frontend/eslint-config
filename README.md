@@ -76,7 +76,7 @@ type ItoConfigParams = {
    */
   tailwind?: boolean;
   /**
-   * 是否有使用Tailwind
+   * 是否有使用TypeScript
    * @default true
    */
   typescript?: boolean;
