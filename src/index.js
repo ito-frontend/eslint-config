@@ -13,6 +13,7 @@ import { vueConfig } from './configs/vue.js';
  * @param {string} options.framework - The version of Vue.js to use.
  * @param {number} options.vueVersion - The version of Vue.js to use.
  * @param {boolean} options.tailwind - Whether to include Tailwind CSS.
+ * @param {boolean} options.typescript - Whether to include TypeScript.
  * @param {Array} options.otherConfigs - Additional configuration objects.
  * @returns {object} - The ITO configuration object.
  */
@@ -21,6 +22,7 @@ function itoConfigFactory(options) {
     framework = 'vue',
     vueVersion = 3,
     tailwind = false,
+    typescript = true,
     otherConfigs = [],
   } = options || {};
 
@@ -39,7 +41,7 @@ function itoConfigFactory(options) {
 
       javascript: javascriptConfig,
 
-      typescript: {
+      typescript: typescript && {
         overrides: {
           'ts/consistent-type-definitions': ['error', 'type'],
         },

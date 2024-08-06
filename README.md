@@ -76,6 +76,12 @@ type ItoConfigParams = {
    */
   tailwind?: boolean;
   /**
+   * 是否有使用Tailwind
+   * @default true
+   */
+  typescript?: boolean;
+  /**
+  /**
    * 其他自定義ESLint Flat Configs
    * @default []
    */
@@ -89,6 +95,7 @@ import ito from '@ito-frontend/eslint-config';
 
 export default ito({
   framework: 'react',
+  typescript: false,
   tailwind: true,
 });
 ```
@@ -100,7 +107,7 @@ export default ito({
 {
   "scripts": {
     // ...
-    "lint:rules": "npx @eslint/config-inspector"
+    "rules:inspect": "npx @eslint/config-inspector"
   }
 }
 ```
