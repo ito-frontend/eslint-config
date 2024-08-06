@@ -33,7 +33,7 @@
     "build": "rollup -c",
     "lint": "eslint . --fix",
     "lint:rules": "npx @eslint/config-inspector",
-    "release": "bumpp"
+    "release": "pnpm build && bumpp"
   },
   "peerDependencies": {
     "eslint": ">=8.57.0"
