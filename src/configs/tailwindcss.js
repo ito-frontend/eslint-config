@@ -15,6 +15,12 @@ export function getTailwindConfig(enabled = false) {
           rules: {
             'tailwindcss/no-custom-classname': 'off',
           },
+          settings: {
+            tailwindcss: {
+              // These are the default values but feel free to customize
+              callees: ['classnames', 'clsx', 'ctl', 'cn'],
+            },
+          },
         },
       ]
     : [];
