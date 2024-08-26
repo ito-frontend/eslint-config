@@ -8,6 +8,15 @@ jobs:
   notify:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get package info
+        id: package
+        run: |
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+          echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+
       - name: Check if patch release
         id: check-patch
         run: |
@@ -15,7 +24,7 @@ jobs:
           if [[ $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "is_patch=true" >> $GITHUB_OUTPUT
           else
-            echo "is_patch=true" >> $GITHUB_OUTPUT
+            echo "is_patch=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Send Slack notification
@@ -24,8 +33,11 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_CHANNEL: '#ito-frontend'
-          SLACK_COLOR: '#36a64f'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'A new patch version of the package has been released: ${{ github.ref }}'
-          SLACK_TITLE: '[Alert] New Package Release'
+          SLACK_MESSAGE: |
+            *${{ steps.package.outputs.name }}* has been updated! 🚀
+
+            NPM URL: https://www.npmjs.com/package/${{ steps.package.outputs.name }}
+            GitHub Release: ${{ github.event.release.html_url }}
+          SLACK_TITLE: ${{ steps.package.outputs.name }} updated!
           SLACK_USERNAME: GitHub Actions
