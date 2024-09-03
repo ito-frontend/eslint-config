@@ -10,7 +10,7 @@ import { vueConfig } from './configs/vue.js';
  * Factory function to create an ITO configuration object.
  *
  * @param {object} options - The options for the configuration.
- * @param {string} options.framework - The version of Vue.js to use.
+ * @param {string} options.framework - Which framework to use.
  * @param {number} options.vueVersion - The version of Vue.js to use.
  * @param {boolean} options.tailwind - Whether to include Tailwind CSS.
  * @param {boolean} options.typescript - Whether to include TypeScript.
