@@ -1,10 +1,22 @@
 import antfu from '@antfu/eslint-config';
 
 import { javascriptConfig } from './configs/javascript.js';
-import { simpleImportSortConfig } from './configs/simple-import-sort.js';
 import { stylelisticConfig } from './configs/stylistic.js';
 import { getTailwindConfig } from './configs/tailwindcss.js';
 import { vueConfig } from './configs/vue.js';
+
+const perfectionistSortConfig = [
+  {
+    rules: {
+      'perfectionist/sort-imports': [
+        'error',
+        {
+          newlinesBetween: 'always',
+        },
+      ],
+    },
+  },
+];
 
 /**
  * Factory function to create an ITO configuration object.
@@ -48,7 +60,7 @@ function itoConfigFactory(options) {
       },
     },
 
-    ...simpleImportSortConfig,
+    ...perfectionistSortConfig,
 
     ...tailwindConfig,
 
