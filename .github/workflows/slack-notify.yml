@@ -35,9 +35,9 @@ jobs:
           SLACK_CHANNEL: '#ito-frontend'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: |
-            *${{ steps.package.outputs.name }}* has been updated! 🚀
+            *${{ steps.package.outputs.name }}* 已經更新囉！
 
             NPM URL: https://www.npmjs.com/package/${{ steps.package.outputs.name }}
             GitHub Release: ${{ github.event.release.html_url }}
-          SLACK_TITLE: ${{ steps.package.outputs.name }} updated!
+          SLACK_TITLE: 🚀套件更新通知🚀
           SLACK_USERNAME: GitHub Actions
