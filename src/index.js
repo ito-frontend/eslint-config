@@ -7,16 +7,16 @@ import { getTailwindConfig } from './configs/tailwindcss.js';
 import { vueConfig } from './configs/vue.js';
 
 const perfectionistSortConfig = [
-  // {
-  //   rules: {
-  //     'perfectionist/sort-imports': [
-  //       'error',
-  //       {
-  //         newlinesBetween: 'always',
-  //       },
-  //     ],
-  //   },
-  // },
+  {
+    rules: {
+      'perfectionist/sort-imports': [
+        'error',
+        {
+          newlinesBetween: 'always',
+        },
+      ],
+    },
+  },
 ];
 
 /**
