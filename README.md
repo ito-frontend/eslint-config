@@ -89,6 +89,11 @@ type ItoConfigParams = {
    */
   typescript?: boolean;
   /**
+   * 是否要啟用檔案命名規則
+   * @default false
+   */
+  checkFile?: boolean | { enabled: boolean; ignores: [] };
+  /**
   /**
    * 其他自定義ESLint Flat Configs
    * @default []
@@ -105,6 +110,7 @@ export default ito({
   framework: 'react',
   typescript: false,
   tailwind: true,
+  checkFile: { enabled: true, ignores: ['README.md', 'src/routes/**/*'] }
 });
 ```
 
