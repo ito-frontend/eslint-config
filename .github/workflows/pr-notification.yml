@@ -20,24 +20,28 @@ jobs:
           # Get the PR author's Slack ID
           AUTHOR_SLACK_ID=$(echo $MAPPING | jq -r --arg AUTHOR "${{ github.event.pull_request.user.login }}" '.[$AUTHOR] // empty')
 
-          # Initialize mentions string
-          MENTIONS=""
-
-          # Add author mention if found
+          # Set author mention if found
           if [ ! -z "$AUTHOR_SLACK_ID" ]; then
-            MENTIONS="<@$AUTHOR_SLACK_ID>"
+            echo "author_mention=<@$AUTHOR_SLACK_ID>" >> $GITHUB_OUTPUT
+          else
+            echo "author_mention=${{ github.event.pull_request.user.login }}" >> $GITHUB_OUTPUT
           fi
+
+          # Initialize reviewer mentions string
+          REVIEWER_MENTIONS=""
 
           # Get requested reviewers' Slack IDs
           for REVIEWER in $(echo '${{ toJson(github.event.pull_request.requested_reviewers) }}' | jq -r '.[].login'); do
             REVIEWER_SLACK_ID=$(echo $MAPPING | jq -r --arg REVIEWER "$REVIEWER" '.[$REVIEWER] // empty')
             if [ ! -z "$REVIEWER_SLACK_ID" ]; then
-              MENTIONS="$MENTIONS <@$REVIEWER_SLACK_ID>"
+              REVIEWER_MENTIONS="$REVIEWER_MENTIONS <@$REVIEWER_SLACK_ID>"
+            else
+              REVIEWER_MENTIONS="$REVIEWER_MENTIONS $REVIEWER"
             fi
           done
 
-          # Set output
-          echo "mentions=$MENTIONS" >> $GITHUB_OUTPUT
+          # Set reviewer mentions output
+          echo "reviewer_mentions=$REVIEWER_MENTIONS" >> $GITHUB_OUTPUT
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
@@ -46,9 +50,10 @@ jobs:
           SLACK_CHANNEL: '#ito-frontend'
           SLACK_ICON: https://github.com/github.png?size=48
           SLACK_MESSAGE: |
-            有新 PR 囉！！ :rocket:
-            ${{ steps.get_mentions.outputs.mentions }}
-            請協助 Code Review 一下，啊哩嘎多！
+            有新的 PR 喔! :rocket:
+            *PR 名稱:* ${{ github.event.pull_request.title }} from ${{ steps.get_mentions.outputs.author_mention }}
+            *Reviewers:* ${{ steps.get_mentions.outputs.reviewer_mentions }}
+            請 協助 Code Review，愛您哦 :heart:
           SLACK_TITLE: PR # ${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}
           SLACK_USERNAME: GitHub
-          SLACK_FOOTER: 'Opened by: ${{ github.event.pull_request.user.login }} | <${{ github.event.pull_request.html_url }}|View PR>'
+          SLACK_FOOTER: '<${{ github.event.pull_request.html_url }}|View PR>'
