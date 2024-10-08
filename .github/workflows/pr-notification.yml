@@ -1,0 +1,54 @@
+name: Notify Slack on PR Open
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+jobs:
+  notify_slack:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get Slack mentions
+        id: get_mentions
+        run: |
+          # Parse the JSON mapping stored in the secret
+          MAPPING='${{ secrets.SLACK_ID_MAPPING }}'
+
+          # Get the PR author's Slack ID
+          AUTHOR_SLACK_ID=$(echo $MAPPING | jq -r --arg AUTHOR "${{ github.event.pull_request.user.login }}" '.[$AUTHOR] // empty')
+
+          # Initialize mentions string
+          MENTIONS=""
+
+          # Add author mention if found
+          if [ ! -z "$AUTHOR_SLACK_ID" ]; then
+            MENTIONS="<@$AUTHOR_SLACK_ID>"
+          fi
+
+          # Get requested reviewers' Slack IDs
+          for REVIEWER in $(echo '${{ toJson(github.event.pull_request.requested_reviewers) }}' | jq -r '.[].login'); do
+            REVIEWER_SLACK_ID=$(echo $MAPPING | jq -r --arg REVIEWER "$REVIEWER" '.[$REVIEWER] // empty')
+            if [ ! -z "$REVIEWER_SLACK_ID" ]; then
+              MENTIONS="$MENTIONS <@$REVIEWER_SLACK_ID>"
+            fi
+          done
+
+          # Set output
+          echo "mentions=$MENTIONS" >> $GITHUB_OUTPUT
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_CHANNEL: '#ito-frontend'
+          SLACK_ICON: https://github.com/github.png?size=48
+          SLACK_MESSAGE: |
+            有新 PR 囉！！ :rocket:
+            ${{ steps.get_mentions.outputs.mentions }}
+            請協助 Code Review 一下，啊哩嘎多！
+          SLACK_TITLE: PR # ${{ github.event.pull_request.number }}: ${{ github.event.pull_request.title }}
+          SLACK_USERNAME: GitHub
+          SLACK_FOOTER: 'Opened by: ${{ github.event.pull_request.user.login }} | <${{ github.event.pull_request.html_url }}|View PR>'
