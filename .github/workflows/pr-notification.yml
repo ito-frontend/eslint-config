@@ -52,8 +52,8 @@ jobs:
           SLACK_MESSAGE: |
             有新的 PR 喔 🚀
             👉 ${{ github.event.pull_request.title }} from ${{ steps.get_mentions.outputs.author_mention }}
-            👀 ${{ steps.get_mentions.outputs.reviewer_mentions }}
-            請協助 Code Review，愛您哦 ❤️
+
+            👀 請 ${{ steps.get_mentions.outputs.reviewer_mentions }} 協助 Code Review，愛您哦 ❤️
           SLACK_TITLE: 熱騰騰的 PR 通知
           SLACK_USERNAME: GitHub
           SLACK_FOOTER: '<${{ github.event.pull_request.html_url }}|View PR>'
