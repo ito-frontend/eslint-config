@@ -51,6 +51,7 @@ jobs:
           SLACK_ICON: https://github.com/github.png?size=48
           SLACK_MESSAGE: |
             有新的 PR 喔 🚀
+
             👉 ${{ github.event.pull_request.title }} from ${{ steps.get_mentions.outputs.author_mention }}
 
             👀 請 ${{ steps.get_mentions.outputs.reviewer_mentions }} 協助 Code Review，愛您哦 ❤️
