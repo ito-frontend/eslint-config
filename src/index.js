@@ -2,7 +2,7 @@ import antfu from '@antfu/eslint-config';
 
 import { getCheckFileConfig } from './configs/check-file.js';
 import { javascriptConfig } from './configs/javascript.js';
-import { stylelisticConfig } from './configs/stylistic.js';
+import { stylisticConfig } from './configs/stylistic.js';
 import { getTailwindConfig } from './configs/tailwindcss.js';
 import { vueConfig } from './configs/vue.js';
 
@@ -55,7 +55,7 @@ function itoConfigFactory(options) {
 
       react: framework === 'react',
 
-      stylistic: stylelisticConfig,
+      stylistic: stylisticConfig,
 
       javascript: javascriptConfig,
 

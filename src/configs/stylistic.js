@@ -1,4 +1,4 @@
-export const stylelisticConfig = {
+export const stylisticConfig = {
   semi: true,
   overrides: {
     'style/arrow-parens': ['error', 'always'],
