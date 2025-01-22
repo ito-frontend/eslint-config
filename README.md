@@ -92,7 +92,7 @@ type ItoConfigParams = {
    * 是否要啟用檔案命名規則
    * @default false
    */
-  checkFile?: boolean | { enabled: boolean; ignores: [] };
+  checkFile?: boolean | { enabled: boolean; ignores?: []; files?: [] };
   /**
   /**
    * 其他自定義ESLint Flat Configs

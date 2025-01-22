@@ -11,12 +11,18 @@ import pluginCheckFile from 'eslint-plugin-check-file';
 export function getCheckFileConfig(checkFile) {
   let isEnabled = false;
   let ignoresArray = [];
+  const fileArr = ['src/**/*.{ts,tsx}'];
 
   if (typeof checkFile === 'boolean') {
     isEnabled = checkFile;
   } else {
-    isEnabled = checkFile.enabled;
-    ignoresArray = checkFile.ignores;
+    const { enabled = true, ignores = [], files = [] } = checkFile;
+
+    isEnabled = enabled;
+    ignoresArray = ignores;
+    files.forEach((filePath) => {
+      fileArr.push(filePath);
+    });
   }
 
   return isEnabled
@@ -26,7 +32,7 @@ export function getCheckFileConfig(checkFile) {
           plugins: {
             'check-file': pluginCheckFile,
           },
-          files: ['src/**/*.{ts,tsx}'],
+          files: fileArr,
           rules: {
             'check-file/filename-naming-convention': [
               'error',
