@@ -23,13 +23,16 @@ const perfectionistSortConfig = [
  * 工廠函數，用於創建各種框架和工具的 ESLint 設定物件。
  *
  * @param {object} options - 設定選項。
- * @param {string} [options.framework] - 要使用的框架（'vue' 或 'react'）。
+ * @param {string} [options.framework] - 要使用的框架（'vue' 或 'react' 或 'astro'）。
  * @param {number} [options.vueVersion] - 要使用的 Vue 版本（如果框架是 'vue'）。
  * @param {boolean} [options.tailwind] - 是否包含 Tailwind CSS 設定。
  * @param {boolean} [options.typescript] - 是否包含 TypeScript 設定。
  * @param {boolean | object} [options.checkFile] - 是否包含文件檢查設定。
  * @param {boolean} [options.checkFile.enabled] - 啟用或禁用文件檢查設定的標誌。
  * @param {string[]} [options.checkFile.ignores] - 要忽略的文件列表。
+ * @param {string[]} [options.checkFile.files] - 要檢查的文件列表。
+ * @param {string} [options.checkFile.fileNamingStyle] - 文件命名風格。
+ * @param {string} [options.checkFile.folderNamingStyle] - 文件夾命名風格。
  * @param {Array} [options.otherConfigs] - 要合併的其他設定。
  * @returns {object} 生成的設定物件。
  */

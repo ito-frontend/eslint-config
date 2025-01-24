@@ -69,10 +69,10 @@
 // ito工廠函數的參數
 type ItoConfigParams = {
   /**
-   * Vue的版本號
-   * @default 3
+   * 框架
+   * @default 'vue'
    */
-  framework?: 'vue' | 'react';
+  framework?: 'vue' | 'react' | 'astro';
   /**
    * Vue的版本號
    * @default 3
@@ -92,7 +92,9 @@ type ItoConfigParams = {
    * 是否要啟用檔案命名規則
    * @default false
    */
-  checkFile?: boolean | { enabled: boolean; ignores?: []; files?: [] };
+  checkFile?:
+    | boolean
+    | { enabled: boolean; ignores?: []; files?: []; fileNamingStyle?: string; folderNamingStyle?: string };
   /**
   /**
    * 其他自定義ESLint Flat Configs
@@ -110,7 +112,7 @@ export default ito({
   framework: 'react',
   typescript: false,
   tailwind: true,
-  checkFile: { enabled: true, ignores: ['README.md', 'src/routes/**/*'] }
+  checkFile: { enabled: true, ignores: ['README.md', 'src/routes/**/*'] },
 });
 ```
 
