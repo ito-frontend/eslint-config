@@ -116,19 +116,12 @@ export default ito({
 });
 ```
 
-5. 想確認所有規則
-
-```jsonc
-// package.json
-{
-  "scripts": {
-    // ...
-    "rules:inspect": "npx @eslint/config-inspector"
-  }
-}
-```
-
-![alt text](config-Inspector.png)
+<details>
+<summary>如果使用Astro</summary>
+<code>
+pnpm add -D eslint-plugin-astro
+</code>
+</details>
 
 <details>
 <summary>新增其他Flat Configs</summary>
@@ -161,6 +154,7 @@ export default ito({
   otherConfigs: [...cypressConfig, ...sonarConfigs],
 });
 ```
+</details>
 
 ## Publish
 
