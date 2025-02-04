@@ -58,6 +58,8 @@ function itoConfigFactory(options) {
 
       react: framework === 'react',
 
+      astro: framework === 'astro',
+
       stylistic: stylisticConfig,
 
       javascript: javascriptConfig,
